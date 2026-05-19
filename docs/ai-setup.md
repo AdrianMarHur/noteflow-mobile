@@ -56,20 +56,34 @@ Las herramientas deben respetar la organización de carpetas definida:
 
 ```
 noteflow/
-├── app/                  # Rutas y navegación (Expo Router)
-│   ├── (tabs)/           # Navegación principal por pestañas
-│   │   ├── _layout.tsx   # Configuración de las tabs
-│   │   ├── notas/        # Pestaña de notas
-│   │   ├── ideas/        # Pestaña de ideas
-│   │   └── tareas/       # Pestaña de tareas (checklists)
-│   ├── _layout.tsx       # Layout raíz
-│   └── nueva-nota.tsx    # Modal de creación
-├── components/           # Componentes reutilizables
-│   └── items/            # Tarjetas de cada tipo de nota
-├── store/                # Estado global con Zustand
-├── types/                # Interfaces y tipos TypeScript
-├── constants/            # Tokens de diseño (theme.ts)
-└── docs/                 # Documentación del proyecto
+├── app/
+│   ├── (tabs)/
+│   │   ├── _layout.tsx
+│   │   ├── notas/
+│   │   │   ├── index.tsx        → lista de notas
+│   │   │   └── [id].tsx         → detalle de nota
+│   │   ├── ideas/
+│   │   │   ├── index.tsx
+│   │   │   └── [id].tsx
+│   │   └── tareas/
+│   │       ├── index.tsx
+│   │       └── [id].tsx
+│   ├── _layout.tsx              → layout global (Stack + modal)
+│   └── nueva-nota.tsx           → modal unificado de creación
+│
+├── src/
+│   ├── components/
+│   │   ├── ui/                  → botones, inputs, etc.
+│   │   ├── notas/               → componentes específicos de notas
+│   │   ├── ideas/
+│   │   └── tareas/
+│   ├── store/                   → estado global (Zustand)
+│   ├── types/                   → modelos TypeScript
+│   ├── constants/               → colores, config, theme
+│   └── services/                → lógica de AsyncStorage
+│
+├── assets/
+└── docs/
 ```
 
 ---
