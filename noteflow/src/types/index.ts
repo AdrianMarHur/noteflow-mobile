@@ -1,17 +1,39 @@
-export type Nota = {
+export interface BaseNote {
   id: string;
   title: string;
-  description?: string;
-};
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-export type Idea = {
-  id: string;
-  title: string;
-  details?: string;
-};
+export interface Note extends BaseNote {
+  content: string;
+}
 
-export type Tarea = {
+export interface IdeaNote extends BaseNote {
+  tags: string[];
+  color: string;
+}
+
+export interface ChecklistNote extends BaseNote {
+  items: ChecklistItem[];
+}
+
+export interface ChecklistItem {
   id: string;
-  title: string;
-  done: boolean;
-};
+  text: string;
+  isCompleted: boolean;
+}
+
+export type AnyNote = Note | IdeaNote | ChecklistNote;
+
+export function isNote(note: AnyNote): note is Note {
+  return 'content' in note;
+}
+
+export function isIdeaNote(note: AnyNote): note is IdeaNote {
+  return 'tags' in note;
+}
+
+export function isChecklistNote(note: AnyNote): note is ChecklistNote {
+  return 'items' in note;
+}
